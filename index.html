@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WE - Beauty Center</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --card-black: rgba(15, 15, 15, 0.85);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa7c11;
+            --text-white: #ffffff;
+            --transition-smooth: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: url('IMG-9014.WEBP');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            /* تم إزالة الطبقة المظلمة لتبقى الخلفية موحدة بالكامل */
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-container {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .center-logo {
+            width: 140px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+        }
+
+        /* شريط الأيقونات السريعة تحت اللوجو */
+        .quick-icons-bar {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            background: rgba(15, 15, 15, 0.6);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-icon-link {
+            color: var(--gold-primary);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .quick-icon-link:hover {
+            color: var(--gold-light);
+            transform: scale(1.15);
+        }
+
+        .quick-icon-link svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .buttons-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-bottom: 30px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* صندوق الزرار الذكي المحتوي على التأثير الدائري */
+        .animated-border-box {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            background: #000000;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        /* تعديل الأبعاد والـ الموضع هنا ليغطي كامل محيط الزرار العريض أثناء الدوران */
+        .animated-border-box::before {
+            content: '';
+            position: absolute;
+            width: 250%;
+            height: 500%;
+            top: -200%;
+            left: -75%;
+            background: conic-gradient(transparent, var(--gold-primary), var(--gold-light), transparent 60%);
+            animation: rotateBorder 4s linear infinite;
+        }
+
+        @keyframes rotateBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* الزرار الفعلي جوه الصندوق */
+        .btn-luxury-premium {
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg, #151515 0%, #050505 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            z-index: 2;
+            transition: var(--transition-smooth);
+            border: none !important;
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-luxury-premium svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--gold-primary);
+            transition: var(--transition-smooth);
+        }
+
+        .animated-border-box:active {
+            transform: scale(0.98);
+        }
+
+        .btn-luxury-premium:hover {
+            color: var(--gold-light);
+        }
+        
+        .btn-luxury-premium:hover svg {
+            fill: var(--gold-light);
+            transform: scale(1.1);
+        }
+
+        /* نصوص نيون بيضاء وبارزة وكبيرة تحت الأزرار */
+        .sub-btn-text {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-top: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .brand-phrase {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+            margin-top: 20px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .brand-phrase::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
+            margin: 12px auto 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <!-- اللوجو -->
+        <div class="logo-container">
+            <img src="IMG-9009.PNG" alt="WE Logo" class="center-logo">
+        </div>
+
+        <!-- ٤ أيقونات صغيرة وجولد تحت اللوجو مباشرة -->
+        <div class="quick-icons-bar">
+            <!-- كول -->
+            <a href="tel:01226156677" class="quick-icon-link">
+                <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+            </a>
+            <!-- انستا -->
+            <a href="https://www.instagram.com/webeauty.center?igsh=Zm9seHRhamd2bHpo" target="_blank" class="quick-icon-link">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <!-- فيس -->
+            <a href="https://www.facebook.com/share/18wjvjK35P/?mibextid=wwXIfr" target="_blank" class="quick-icon-link">
+                <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.8z"/></svg>
+            </a>
+            <!-- واتس -->
+            <a href="https://wa.me/201028334250" target="_blank" class="quick-icon-link">
+                <svg viewBox="0 0 24 24"><path d="M12.012 2c-5.508 0-9.988 4.479-9.988 9.987 0 1.818.49 3.517 1.339 4.982L2.013 22l5.221-1.37c1.41.8 3.023 1.258 4.757 1.258 5.507 0 9.988-4.479 9.988-9.988 0-5.508-4.481-9.987-9.988-9.987zm4.689 13.882c-.227.639-1.121 1.189-1.543 1.25-.395.057-.887.082-2.522-.593-2.09-.861-3.411-2.99-3.515-3.13-.104-.139-.838-.988-.838-1.91 0-.923.484-1.377.656-1.562.172-.186.375-.232.5-.232.125 0 .25 0 .359.006.115.006.269-.044.422.316.156.369.534 1.297.58 1.391.047.094.078.203.016.328-.063.125-.125.219-.25.359-.125.141-.263.313-.375.422-.125.125-.255.26-.11.51.146.25.646 1.066 1.385 1.723.954.848 1.758 1.11 2.016 1.239.258.129.406.108.555-.062.148-.171.641-.745.813-.996.172-.25.344-.21.578-.125.234.088 1.484.7 1.734.825.25.125.416.187.479.292.063.104.063.604-.164 1.243z"/></svg>
+            </a>
+        </div>
+
+        <!-- قائمة الأزرار الفخمة المتحركة -->
+        <div class="buttons-container">
+            
+            <!-- 1. Customer Service -->
+            <div class="button-group">
+                <div class="animated-border-box">
+                    <a href="tel:01226156677" class="btn-luxury-premium">
+                        <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+                        Customer Service
+                    </a>
+                </div>
+                <div class="sub-btn-text">تواصل معنا</div>
+            </div>
+
+            <!-- 2. Facebook -->
+            <div class="button-group">
+                <div class="animated-border-box">
+                    <a href="https://www.facebook.com/share/18wjvjK35P/?mibextid=wwXIfr" target="_blank" class="btn-luxury-premium">
+                        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.8z"/></svg>
+                        تابعونا على فيسبوك
+                    </a>
+                </div>
+                <div class="sub-btn-text">تابعنا على صفحاتنا</div>
+            </div>
+
+            <!-- 3. Instagram -->
+            <div class="button-group">
+                <div class="animated-border-box">
+                    <a href="https://www.instagram.com/webeauty.center?igsh=Zm9seHRhamd2bHpo" target="_blank" class="btn-luxury-premium">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                        تابعونا على إنستجرام
+                    </a>
+                </div>
+                <div class="sub-btn-text">تابعنا على صفحاتنا</div>
+            </div>
+
+            <!-- 4. WhatsApp -->
+            <div class="button-group">
+                <div class="animated-border-box">
+                    <a href="https://wa.me/201028334250" target="_blank" class="btn-luxury-premium">
+                        <svg viewBox="0 0 24 24"><path d="M12.012 2c-5.508 0-9.988 4.479-9.988 9.987 0 1.818.49 3.517 1.339 4.982L2.013 22l5.221-1.37c1.41.8 3.023 1.258 4.757 1.258 5.507 0 9.988-4.479 9.988-9.988 0-5.508-4.481-9.987-9.988-9.987zm4.689 13.882c-.227.639-1.121 1.189-1.543 1.25-.395.057-.887.082-2.522-.593-2.09-.861-3.411-2.99-3.515-3.13-.104-.139-.838-.988-.838-1.91 0-.923.484-1.377.656-1.562.172-.186.375-.232.5-.232.125 0 .25 0 .359.006.115.006.269-.044.422.316.156.369.534 1.297.58 1.391.047.094.078.203.016.328-.063.125-.125.219-.25.359-.125.141-.263.313-.375.422-.125.125-.255.26-.11.51.146.25.646 1.066 1.385 1.723.954.848 1.758 1.11 2.016 1.239.258.129.406.108.555-.062.148-.171.641-.745.813-.996.172-.25.344-.21.578-.125.234.088 1.484.7 1.734.825.25.125.416.187.479.292.063.104.063.604-.164 1.243z"/></svg>
+                        تواصلوا معنا عبر واتساب
+                    </a>
+                </div>
+                <div class="sub-btn-text">تواصل معنا</div>
+            </div>
+
+            <!-- 5. Google Maps -->
+            <div class="button-group">
+                <div class="animated-border-box">
+                    <a href="https://maps.app.goo.gl/kLMrW4tk8mxCN1wc6" target="_blank" class="btn-luxury-premium">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        موقع المركز على الخريطة
+                    </a>
+                </div>
+                <div class="sub-btn-text">نورونا في المكان</div>
+            </div>
+
+        </div>
+
+        <!-- الجملة الثابتة في النهاية -->
+        <div class="brand-phrase">We beauty center & spa</div>
+    </div>
+
+</body>
+</html>
